@@ -7,24 +7,29 @@ export default function CourseCard({ course, index, onMutateCourse }) {
   const [date, setDate] = useState("");
 
 
-  // 📘 TASK 4 — PART A (Anchor): Implement toggle using onMutateCourse + .map()
-  function toggleTask(id) {
-    // TODO: toggle the task with this id
-  }
+function toggleTask(id) {
+  onMutateCourse(index, tasks =>
+  tasks.map(t => (t.id === id ? { ...t, isDone: !t.isDone } : t)))
+}
 
+function deleteTask(id) {
+    onMutateCourse(index, tasks => tasks.filter(t => t.id !== id));
+}
 
-  // 📘 TASK 4 — PART A (Anchor): Implement delete using onMutateCourse + .filter()
-  function deleteTask(id) {
-    // TODO: delete the task with this id
-  }
+function addTask(e) {
+  e.preventDefault();
+  if (!title.trim() || !date) return;
+  const newTask = {
+    id: Math.random().toString(36).slice(2, 9),
+    title,               
+    dueDate: date,
+    isDone: false,        
+  };
 
-
-  // 📘 TASK 4 — PART A (Anchor): Implement add using onMutateCourse
-  function addTask(e) {
-    e.preventDefault();
-    // TODO: create a new task { id, title, dueDate: date, isDone: false }
-    // TODO: append it to existing tasks and reset inputs
-  }
+  onMutateCourse(index, tasks => [...tasks, newTask]);
+  setTitle("");
+  setDate("");
+}
 
 
   return (
