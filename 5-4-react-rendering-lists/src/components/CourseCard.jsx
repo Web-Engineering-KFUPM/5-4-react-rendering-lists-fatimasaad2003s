@@ -42,23 +42,6 @@ function addTask(e) {
     )}
       </header>
 
-
-    {course.tasks.length === 0 ? (
-        <p>No tasks yet. Add your first one below.</p>
-      ) : (
-        <ul className="tasks">
-          {course.tasks.map(task => (
-            <TaskItem
-              key={task.id}
-              task={task}
-              onToggle={toggleTask}
-              onDelete={deleteTask}
-            />
-          ))}
-        </ul>
-      )}
-
-
     <section className="tasksSection">
         {course.tasks.length === 0 ? (
         <p>No tasks yet. Add your first one below.</p>
