@@ -40,11 +40,10 @@ export default function CourseCard({ course, index, onMutateCourse }) {
 
 
       {/* 🟩 PART A (Anchor): If NO tasks → show message; ELSE → render the list (ternary ?: ) */}
-      <section className="tasksSection">
-        {/* 📘 TASK 2 — Render Tasks for Each Course */}
-        {/* 🔎 Anchor: You’ll write your code right inside this list. */}
+      {course.tasks.length === 0 ? (
+        <p>No tasks yet. Add your first one below.</p>
+      ) : (
         <ul className="tasks">
-          {/* TODO: course.tasks.map(task => <TaskItem key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />) */}
           {course.tasks.map(task => (
             <TaskItem
               key={task.id}
@@ -54,6 +53,28 @@ export default function CourseCard({ course, index, onMutateCourse }) {
             />
           ))}
         </ul>
+      )}
+
+
+      <section className="tasksSection">
+        {/* 📘 TASK 2 — Render Tasks for Each Course */}
+        {/* 🔎 Anchor: You’ll write your code right inside this list. */}
+        {/* TODO: course.tasks.map(task => <TaskItem key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />) */}
+        {course.tasks.length === 0 ? (
+        <p>No tasks yet. Add your first one below.</p>
+        ) : (
+        <ul className="tasks">
+        {course.tasks.map(task => (
+            <TaskItem
+              key={task.id}
+              task={task}
+              onToggle={toggleTask}
+              onDelete={deleteTask}
+            />
+          ))}
+        </ul>
+      )}
+
       </section>
 
 
